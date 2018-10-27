@@ -6,7 +6,6 @@
         <input 
           type="text"
           v-model="inputValue"
-          @keypress.enter="submitForm"
         >
         <input 
           type="submit"

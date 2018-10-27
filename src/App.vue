@@ -29,6 +29,9 @@
       max="600"
       v-model.number="totalStars"
     />
+    <wishes-list
+      :wishes="wishes"
+    />
   </div>
 </template>
 
@@ -37,6 +40,7 @@ import CommonStar from "@/components/Common-star";
 import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
 import Modal from "@/components/Modal";
+import WishesList from "@/components/Wishes-list";
 
 export default {
   name: "app",
@@ -44,7 +48,8 @@ export default {
     CommonStar,
     ShootingStar,
     Moon,
-    Modal
+    Modal,
+    WishesList
   },
   data() {
     return {
