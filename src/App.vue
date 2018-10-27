@@ -62,6 +62,12 @@ export default {
     setInterval(() => {
       this.isShootingStarVisible = !this.isShootingStarVisible;
     }, 6000);
+  },
+  created() {
+    const userName = localStorage.getItem("userName");
+    if (userName) {
+      this.userName = userName;
+    }
   }
 };
 </script>
