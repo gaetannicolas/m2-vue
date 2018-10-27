@@ -2,6 +2,7 @@
   <div 
     class="star"
     :style="style"
+    ref="star"
   >
 
   </div>
@@ -41,4 +42,3 @@ export default {
   border-radius: 100%;
 }
 </style>
-

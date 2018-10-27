@@ -1,32 +1,9 @@
-<template>
-  <div 
-    class="star shooting-star"
-    :style="style"
-    ref="star"
-  >
-
-  </div>
-</template>
-
 <script>
-import { randomX, randomY } from "../helpers/random";
+import Star from "../mixins/Star";
 
 export default {
-  name: "Star",
-  computed: {
-    randomX() {
-      return randomX();
-    },
-    randomY() {
-      return randomY();
-    },
-    style() {
-      return `
-        top: ${this.randomY}px;
-        left: ${this.randomX}px;
-      `;
-    }
-  },
+  name: "ShootingStar",
+  mixins: [Star],
   mounted() {
     let num = Math.floor(Math.random() * 600) + 1; // this will get a number between 1 and 99;
     num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
@@ -41,7 +18,7 @@ export default {
   --star-direction: 300px;
 }
 
-.shooting-star {
+div {
   position: absolute;
   left: 0 !important;
   height: 6px !important;
@@ -61,4 +38,3 @@ export default {
   }
 }
 </style>
-
