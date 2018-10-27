@@ -1,16 +1,16 @@
 <template>
-  <div class="login-wrapper">
-    <div class="login-modal">
-      <h2>Entrez votre pseudo :</h2>
+  <div class="modal-wrapper">
+    <div class="modal">
+      <h2>{{ title }}</h2>
       <form>
         <input 
           type="text"
-          v-model="userName"
-          @keypress.enter="submitLogin"
+          v-model="inputValue"
+          @keypress.enter="submitForm"
         >
         <input 
           type="submit"
-          @click.prevent="submitLogin"
+          @click.prevent="submitForm"
         >
       </form>
     </div>
@@ -19,22 +19,28 @@
 
 <script>
 export default {
-  name: "LoginModal",
+  name: "Modal",
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      userName: ""
+      inputValue: ""
     };
   },
   methods: {
-    submitLogin() {
-      this.$emit("onSubmitLogin", this.userName);
+    submitForm() {
+      this.$emit("onSubmitForm", this.inputValue);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.login-wrapper {
+.modal-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +50,7 @@ export default {
   z-index: 2;
 }
 
-.login-modal {
+.modal {
   max-width: 400px;
   padding: 1rem 2rem;
   background-color: white;

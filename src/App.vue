@@ -1,9 +1,15 @@
 <template>
   <div id="app">
     <transition name="fade">
-      <login-modal
+      <Modal
         v-if="!isLoggedIn"
-        @onSubmitLogin="setLogin"
+        title="Entrez votre pseudo :"
+        @onSubmitForm="setLogin"
+      />
+      <Modal
+        v-if="isLoggedIn && makeAWish"
+        title="Faites un voeux !"
+        @onSubmitForm="setWish"
       />
     </transition>
     <Moon />
@@ -14,7 +20,7 @@
       />
     </transition-group>
     <shooting-star 
-      v-if="isShootingStarVisible"
+      v-if="makeAWish"
     />
     <input 
       type="range"
@@ -30,7 +36,7 @@
 import CommonStar from "@/components/Common-star";
 import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
-import LoginModal from "@/components/Login-modal";
+import Modal from "@/components/Modal";
 
 export default {
   name: "app",
@@ -38,13 +44,14 @@ export default {
     CommonStar,
     ShootingStar,
     Moon,
-    LoginModal
+    Modal
   },
   data() {
     return {
       userName: "",
       totalStars: 200,
-      isShootingStarVisible: true
+      makeAWish: true,
+      wishes: []
     };
   },
   computed: {
@@ -56,11 +63,18 @@ export default {
     setLogin(userName) {
       this.userName = userName;
       localStorage.setItem("userName", userName);
+    },
+    setWish(wish) {
+      this.wishes.push({
+        userName: this.userName,
+        wish
+      });
+      this.makeAWish = false;
     }
   },
   mounted() {
     setInterval(() => {
-      this.isShootingStarVisible = !this.isShootingStarVisible;
+      this.makeAWish = !this.makeAWish;
     }, 6000);
   },
   created() {
