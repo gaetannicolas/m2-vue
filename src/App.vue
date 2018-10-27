@@ -42,6 +42,8 @@ import Moon from "@/components/Moon";
 import Modal from "@/components/Modal";
 import WishesList from "@/components/Wishes-list";
 
+import { db } from "@/services/firebase";
+
 export default {
   name: "app",
   components: {
@@ -55,9 +57,11 @@ export default {
     return {
       userName: "",
       totalStars: 200,
-      makeAWish: true,
-      wishes: []
+      makeAWish: true
     };
+  },
+  firebase: {
+    wishes: db.ref("wishes")
   },
   computed: {
     isLoggedIn() {
@@ -70,7 +74,7 @@ export default {
       localStorage.setItem("userName", userName);
     },
     setWish(wish) {
-      this.wishes.push({
+      db.ref("wishes").push({
         userName: this.userName,
         wish
       });
