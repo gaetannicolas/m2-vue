@@ -7,6 +7,9 @@
         :key="star"
       />
     </transition-group>
+    <shooting-star 
+      v-if="isShootingStarVisible"
+    />
     <input 
       type="range"
       name="stars" 
@@ -19,18 +22,26 @@
 
 <script>
 import Star from "@/components/Star";
+import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
 
 export default {
   name: "app",
   components: {
     Star,
+    ShootingStar,
     Moon
   },
   data() {
     return {
-      totalStars: 200
+      totalStars: 200,
+      isShootingStarVisible: true
     };
+  },
+  mounted() {
+    setInterval(() => {
+      this.isShootingStarVisible = !this.isShootingStarVisible;
+    }, 6000);
   }
 };
 </script>
