@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <transition name="fade">
+      <login-modal
+        v-if="!isLoggedIn"
+        @onSubmitLogin="setLogin"
+      />
+    </transition>
     <Moon />
     <transition-group name="fade">
       <common-star 
@@ -24,19 +30,33 @@
 import CommonStar from "@/components/Common-star";
 import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
+import LoginModal from "@/components/Login-modal";
 
 export default {
   name: "app",
   components: {
     CommonStar,
     ShootingStar,
-    Moon
+    Moon,
+    LoginModal
   },
   data() {
     return {
+      userName: "",
       totalStars: 200,
       isShootingStarVisible: true
     };
+  },
+  computed: {
+    isLoggedIn() {
+      return this.userName;
+    }
+  },
+  methods: {
+    setLogin(userName) {
+      this.userName = userName;
+      localStorage.setItem("userName", userName);
+    }
   },
   mounted() {
     setInterval(() => {
