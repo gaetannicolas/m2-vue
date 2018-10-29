@@ -3,14 +3,16 @@
     <transition name="fade">
       <Modal
         v-if="!isLoggedIn"
-        title="Entrez votre pseudo :"
         @onSubmitForm="setLogin"
-      />
+      >
+        <h2>Entrez votre pseudo :</h2>
+      </Modal>
       <Modal
         v-if="isLoggedIn && makeAWish"
-        title="Faites un voeux !"
         @onSubmitForm="setWish"
-      />
+      >
+        <h2>Faites un voeux !</h2>
+      </Modal>
     </transition>
     <Moon />
     <transition-group name="fade">

@@ -1,7 +1,7 @@
 <template>
   <div class="modal-wrapper">
     <div class="modal">
-      <h2>{{ title }}</h2>
+      <slot></slot>
       <form>
         <input 
           type="text"
