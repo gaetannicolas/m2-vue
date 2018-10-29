@@ -19,12 +19,6 @@
 <script>
 export default {
   name: "Modal",
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       inputValue: ""
