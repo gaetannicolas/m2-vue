@@ -1,9 +1,14 @@
-<script>
-import Star from "../mixins/Star";
+<template>
+  <div 
+    class="shooting-star"
+    ref="star"
+  ></div>
+</template>
 
+
+<script>
 export default {
   name: "ShootingStar",
-  mixins: [Star],
   mounted() {
     let num = Math.floor(Math.random() * 600) + 1; // this will get a number between 1 and 99;
     num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
@@ -18,7 +23,7 @@ export default {
   --star-direction: 300px;
 }
 
-div {
+.shooting-star {
   position: absolute;
   left: 0 !important;
   height: 6px !important;

@@ -16,14 +16,23 @@
     </transition>
     <Moon />
     <transition-group name="fade">
-      <common-star 
+      <random
         v-for="star in totalStars"
         :key="star"
-      />
+      >
+        <common-star
+          slot-scope="{ randomCssProperties }" 
+          :style="randomCssProperties"
+        />
+      </random>
     </transition-group>
-    <shooting-star 
-      v-if="makeAWish"
-    />
+    <random>
+      <shooting-star 
+        v-if="makeAWish"
+        slot-scope="{ randomCssProperties }" 
+        :style="randomCssProperties"
+      />
+    </random>
     <input 
       type="range"
       name="stars" 
@@ -43,6 +52,7 @@ import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
 import Modal from "@/components/Modal";
 import WishesList from "@/components/Wishes-list";
+import Random from "@/components/Random";
 
 import { db } from "@/services/firebase";
 
@@ -53,7 +63,8 @@ export default {
     ShootingStar,
     Moon,
     Modal,
-    WishesList
+    WishesList,
+    Random
   },
   data() {
     return {
