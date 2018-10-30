@@ -10,6 +10,7 @@
   "dependencies": {
     "firebase": "^5.5.6",
     "vue": "^2.5.17",
+    "vue-hooks": "^0.3.0",
     "vuefire": "^1.4.5"
   },
   "devDependencies": {
