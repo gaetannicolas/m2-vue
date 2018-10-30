@@ -1,8 +1,22 @@
 <script>
-import Star from "../mixins/Star";
+import { withHooks } from "vue-hooks";
+import { useRandomStyles } from "@/hooks/useRandomStyles";
 
-export default {
-  name: "CommonStar",
-  mixins: [Star]
-};
+const CommonStar = withHooks(h => {
+  const randomStyles = useRandomStyles();
+
+  return h("div", {
+    class: {
+      star: true
+    },
+    style: {
+      ...randomStyles.styles,
+      backgroundColor: "white",
+      position: "absolute",
+      borderRadius: "100%"
+    }
+  });
+});
+
+export default CommonStar;
 </script>
