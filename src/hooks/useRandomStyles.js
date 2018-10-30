@@ -13,7 +13,5 @@ export function useRandomStyles() {
     width: `${getRandomRadius}px`
   }));
 
-  return {
-    styles
-  };
+  return styles;
 }

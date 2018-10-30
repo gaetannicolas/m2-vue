@@ -10,7 +10,7 @@ const CommonStar = withHooks(h => {
       star: true
     },
     style: {
-      ...randomStyles.styles,
+      ...randomStyles,
       backgroundColor: "white",
       position: "absolute",
       borderRadius: "100%"
