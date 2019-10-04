@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-
+    <div v-for="n in 1000" :key="n" :style="`top: ${ranY()}px; left: ${ranX()}px`" class="star">
+    </div>
+    <div class='moon'></div>
   </div>
 </template>
-
+\
 <script>
+import {randomX, randomY} from './helpers/random'
+
 export default {
-  name: "app"
+  name: "app",
+  methods: {
+    ranX() {
+      return randomX();
+    },
+    ranY () {
+      return randomY();
+    }
+  }
 };
 </script>
 
@@ -23,6 +35,7 @@ body {
   height: 100vh;
   width: 100vw;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  position: relative;
 }
 
 .star {
