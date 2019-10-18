@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Moon />
+    <shooting-star v-if="displayShootingStar" />
     <transition-group name="fade">
       <Star 
         v-for="star in totalStars"
@@ -20,18 +21,24 @@
 <script>
 import Star from "@/components/Star";
 import Moon from "@/components/Moon";
+import ShootingStar from '@/components/ShootingStar';
 
 export default {
   name: "app",
   components: {
     Star,
-    Moon
+    Moon,
+    ShootingStar
+  },
+  mounted(){
+    setInterval(() => {this.displayShootingStar = !this.displayShootingStar}, 500)
   },
   data() {
     return {
-      totalStars: 200
+      totalStars: 200,
+      displayShootingStar: true,
     };
-  }
+  },
 };
 </script>
 
