@@ -9,24 +9,12 @@
 </template>
 
 <script>
-import { randomX, randomY } from "../helpers/random";
+// import { randomX, randomY } from "../helpers/random";
+import randomStar from "../mixins/randomStar";
 
 export default {
+  mixins: [randomStar],
   name: "Star",
-  computed: {
-    randomX() {
-      return randomX();
-    },
-    randomY() {
-      return randomY();
-    },
-    style() {
-      return `
-        top: ${this.randomY}px;
-        left: ${this.randomX}px;
-      `;
-    }
-  },
   mounted() {
     let num = Math.floor(Math.random() * 600) + 1; // this will get a number between 1 and 99;
     num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
