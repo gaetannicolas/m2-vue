@@ -1,14 +1,28 @@
 <template>
   <div class="login-wrapper">
     <div class="login-modal">
-
+      <label>
+        Entrez votre pseudo :
+        <input type="text" v-model="pseudo"/>
+      </label>
+      <button @click.prevent="savePseudo">Valider</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoginModal"
+  name: "LoginModal",
+  data() {
+    return {
+      pseudo: ''
+    }
+  },
+  methods: {
+    savePseudo() {
+      this.$emit("onSavePseudo", this.pseudo);
+    },
+  },
 };
 </script>
 
