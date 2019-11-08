@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <p v-for="user of users" :key="user">
+      {{user.name}}
+    </p>
     <transition name="fade">
       <Modal
         v-if="!isLoggedIn"
@@ -41,6 +44,7 @@ import ShootingStar from "@/components/Shooting-star";
 import Moon from "@/components/Moon";
 import Modal from "@/components/Modal";
 import WishesList from "@/components/Wishes-list";
+import { db } from "./services/firebase";
 
 export default {
   name: "app",
@@ -56,8 +60,18 @@ export default {
       userName: "",
       totalStars: 200,
       makeAWish: true,
-      wishes: []
+      wishes: [],
+      users: {}
     };
+  },
+  firebase: {
+    wishes: {
+      source: db.ref("wishes"),
+      // Optional, allows you to handle any errors.
+      cancelCallback(err) {
+        console.error(err);
+      }
+    }
   },
   computed: {
     isLoggedIn() {
@@ -70,10 +84,10 @@ export default {
       localStorage.setItem("userName", userName);
     },
     setWish(wish) {
-      this.wishes.push({
+      this.$firebaseRefs.wishes.push({
         userName: this.userName,
         wish
-      });
+      })
       this.makeAWish = false;
     }
   },
