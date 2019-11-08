@@ -1,9 +1,9 @@
 <template>
   <ul class="wishes-list">
-    <li>
-      <span class="wish-author">Username</span>
+    <li v-for="(wish, index) in wishes" :key="index">
+      <span class="wish-author">{{ wish.userName }}</span>
       <p class="wish-content">
-        I wish I was a unicorn !
+        {{ wish.wish }}
       </p>
     </li>
   </ul>
@@ -11,7 +11,13 @@
 
 <script>
 export default {
-  name: "WishesList"
+  name: "WishesList",
+  props: {
+    wishes: {
+      type: Array,
+      required: true
+    }
+  },
 };
 </script>
 
